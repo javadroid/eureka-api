@@ -21,11 +21,9 @@ async findbyId(@Param('id') id: string) {
 
 @Get(':id/:value')
 async findbyAny(@Param('id') id: string, @Param('value') value: string) {
-  // if (id === 'evidence' || id === 'reportDetail' || id === 'reporterId') {
+  
     return this.subscriptionService.findbyAny(id, value);
-  // } else {
-  //   throw new NotFoundException("fleid '" + id + "' not found");
-  // }
+
 }
 
 @Patch(':_id')

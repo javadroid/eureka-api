@@ -25,11 +25,14 @@ async findAll(): Promise<Subscription[]> {
 }
 
 async findbyId(id: any): Promise<Subscription> {
-  try {
-    return this.subscriptionModel.findById(id).exec();
-  } catch (error) {
-    throw new NotFoundException(error.message);
-  }
+  
+    const result = await   this.subscriptionModel.findById(id).exec();
+  
+    if (result) {
+      return result;
+    } else {
+      throw new NotFoundException();
+    }
 }
 
 async findbyAny(id: string, value: string): Promise<Subscription[]> {
@@ -42,17 +45,23 @@ async findbyAny(id: string, value: string): Promise<Subscription[]> {
 }
 
 async update(_id: string, updateNew: SubscriptionDTO): Promise<Subscription> {
-  try {
-    return this.subscriptionModel.findByIdAndUpdate({ _id }, updateNew).exec();
-  } catch (error) {
-    throw new NotFoundException(error.message);
-  }
+  
+     const result = await   this.subscriptionModel.findByIdAndUpdate({ _id }, updateNew).exec();
+ 
+    if (result) {
+      return result;
+    } else {
+      throw new NotFoundException();
+    }
 }
 
 async delete(_id: string): Promise<Subscription> {
-  try {
-    return this.subscriptionModel.findByIdAndDelete({ _id }).exec();
-  } catch (error) {
-    throw new NotFoundException(error.message);
-  }
+  
+   const result = await   this.subscriptionModel.findByIdAndDelete({ _id }).exec();
+   
+    if (result) {
+      return result;
+    } else {
+      throw new NotFoundException();
+    }
 }}

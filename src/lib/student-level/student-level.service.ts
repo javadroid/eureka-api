@@ -25,11 +25,14 @@ async findAll(): Promise<StudentLevel[]> {
 }
 
 async findbyId(id: any): Promise<StudentLevel> {
-  try {
-    return this.studentLevelModel.findById(id).exec();
-  } catch (error) {
-    throw new NotFoundException(error.message);
-  }
+  
+   const result = await   this.studentLevelModel.findById(id).exec();
+   
+    if (result) {
+      return result;
+    } else {
+      throw new NotFoundException();
+    }
 }
 
 async findbyAny(id: string, value: string): Promise<StudentLevel[]> {
@@ -42,17 +45,23 @@ async findbyAny(id: string, value: string): Promise<StudentLevel[]> {
 }
 
 async update(_id: string, updateNew: StudentLevelDTO): Promise<StudentLevel> {
-  try {
-    return this.studentLevelModel.findByIdAndUpdate({ _id }, updateNew).exec();
-  } catch (error) {
-    throw new NotFoundException(error.message);
-  }
+  
+    const result = await  this.studentLevelModel.findByIdAndUpdate({ _id }, updateNew).exec();
+   
+    if (result) {
+      return result;
+    } else {
+      throw new NotFoundException();
+    }
 }
 
 async delete(_id: string): Promise<StudentLevel> {
-  try {
-    return this.studentLevelModel.findByIdAndDelete({ _id }).exec();
-  } catch (error) {
-    throw new NotFoundException(error.message);
-  }
+  
+      const result = await   this.studentLevelModel.findByIdAndDelete({ _id }).exec();
+
+    if (result) {
+      return result;
+    } else {
+      throw new NotFoundException();
+    }
 }}

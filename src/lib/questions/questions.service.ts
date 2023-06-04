@@ -27,10 +27,13 @@ export class QuestionService {
   }
 
   async findbyId(id: any): Promise<Questions> {
-    try {
-      return this.questionsModel.findById(id).exec();
-    } catch (error) {
-      throw new NotFoundException(error.message);
+   
+     const result = await  this.questionsModel.findById(id).exec();
+     
+    if (result) {
+      return result;
+    } else {
+      throw new NotFoundException();
     }
   }
 
@@ -44,18 +47,24 @@ export class QuestionService {
   }
 
   async update(_id: string, updateNew: QuestionsDTO): Promise<Questions> {
-    try {
-      return this.questionsModel.findByIdAndUpdate({ _id }, updateNew).exec();
-    } catch (error) {
-      throw new NotFoundException(error.message);
+    
+    const result = await this.questionsModel.findByIdAndUpdate({ _id }, updateNew).exec();
+   
+    if (result) {
+      return result;
+    } else {
+      throw new NotFoundException();
     }
   }
 
   async delete(_id: string): Promise<Questions> {
-    try {
-      return this.questionsModel.findByIdAndDelete({ _id }).exec();
-    } catch (error) {
-      throw new NotFoundException(error.message);
+   
+     const result = await   this.questionsModel.findByIdAndDelete({ _id }).exec();
+     
+    if (result) {
+      return result;
+    } else {
+      throw new NotFoundException();
     }
   }
 }

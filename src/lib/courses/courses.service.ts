@@ -26,11 +26,14 @@ export class CourseService {
   }
 
   async findbyId(id: any): Promise<Courses> {
-    try {
-      return this.coursesModel.findById(id).exec();
-    } catch (error) {
-      throw new NotFoundException(error.message);
-    }
+  
+      const result=await this.coursesModel.findById(id).exec();
+      
+      if (result) {
+        return result;
+      } else {
+        throw new NotFoundException();
+      }
   }
 
   async findbyAny(id: string, value: string): Promise<Courses[]> {
@@ -43,18 +46,24 @@ export class CourseService {
   }
 
   async update(_id: string, updateNew: CoursesDTO): Promise<Courses> {
-    try {
-      return this.coursesModel.findByIdAndUpdate({ _id }, updateNew).exec();
-    } catch (error) {
-      throw new NotFoundException(error.message);
-    }
+    
+     const result = await this.coursesModel.findByIdAndUpdate({ _id }, updateNew).exec();
+     
+      if (result) {
+        return result;
+      } else {
+        throw new NotFoundException();
+      }
   }
 
   async delete(_id: string): Promise<Courses> {
-    try {
-      return this.coursesModel.findByIdAndDelete({ _id }).exec();
-    } catch (error) {
-      throw new NotFoundException(error.message);
+    
+       const result = await  this.coursesModel.findByIdAndDelete({ _id }).exec();
+    
+    if (result) {
+      return result;
+    } else {
+      throw new NotFoundException();
     }
   }
 }

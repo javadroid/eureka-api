@@ -26,11 +26,13 @@ export class NewsCategoryService {
   }
 
   async findbyId(id: any): Promise<NewsCategories> {
-    try {
-      return this.newsCategoriesModel.findById(id).exec();
-    } catch (error) {
-      throw new NotFoundException(error.message);
-    }
+    
+       const result = await   this.newsCategoriesModel.findById(id).exec();
+      if (result) {
+        return result;
+      } else {
+        throw new NotFoundException();
+      }
   }
 
   async findbyAny(id: string, value: string): Promise<NewsCategories[]> {
@@ -43,18 +45,22 @@ export class NewsCategoryService {
   }
 
   async update(_id: string, updateNew: NewsCategoriesDTO): Promise<NewsCategories> {
-    try {
-      return this.newsCategoriesModel.findByIdAndUpdate({ _id }, updateNew).exec();
-    } catch (error) {
-      throw new NotFoundException(error.message);
-    }
+   
+        const result = await   this.newsCategoriesModel.findByIdAndUpdate({ _id }, updateNew).exec();
+      if (result) {
+        return result;
+      } else {
+        throw new NotFoundException();
+      }
   }
 
   async delete(_id: string): Promise<NewsCategories> {
-    try {
-      return this.newsCategoriesModel.findByIdAndDelete({ _id }).exec();
-    } catch (error) {
-      throw new NotFoundException(error.message);
-    }
+
+    const result = await   this.newsCategoriesModel.findByIdAndDelete({ _id }).exec();
+      if (result) {
+        return result;
+      } else {
+        throw new NotFoundException();
+      }
   }
 }

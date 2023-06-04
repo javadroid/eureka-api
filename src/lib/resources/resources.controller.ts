@@ -22,11 +22,7 @@ export class ResourceController {
 
   @Get(':id/:value')
   async findbyAny(@Param('id') id: string, @Param('value') value: string) {
-    // if (id === 'evidence' || id === 'reportDetail' || id === 'reporterId') {
       return this.resourcesService.findbyAny(id, value);
-    // } else {
-    //   throw new NotFoundException("fleid '" + id + "' not found");
-    // }
   }
 
   @Patch(':_id')

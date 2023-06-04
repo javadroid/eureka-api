@@ -26,11 +26,13 @@ async findAll(): Promise<Resources[]> {
 }
 
 async findbyId(id: any): Promise<Resources> {
-  try {
-    return this.usersModel.findById(id).exec();
-  } catch (error) {
-    throw new NotFoundException(error.message);
-  }
+ 
+     const result = await  this.usersModel.findById(id).exec();
+    if (result) {
+      return result;
+    } else {
+      throw new NotFoundException();
+    }
 }
 
 async findbyAny(id: string, value: string): Promise<Resources[]> {
@@ -43,17 +45,23 @@ async findbyAny(id: string, value: string): Promise<Resources[]> {
 }
 
 async update(_id: string, updateNew: ResourcesDTO): Promise<Resources> {
-  try {
-    return this.usersModel.findByIdAndUpdate({ _id }, updateNew).exec();
-  } catch (error) {
-    throw new NotFoundException(error.message);
-  }
+ 
+     const result = await   this.usersModel.findByIdAndUpdate({ _id }, updateNew).exec();
+ 
+    if (result) {
+      return result;
+    } else {
+      throw new NotFoundException();
+    }
 }
 
 async delete(_id: string): Promise<Resources> {
-  try {
-    return this.usersModel.findByIdAndDelete({ _id }).exec();
-  } catch (error) {
-    throw new NotFoundException(error.message);
-  }
+ 
+     const result = await   this.usersModel.findByIdAndDelete({ _id }).exec();
+ 
+    if (result) {
+      return result;
+    } else {
+      throw new NotFoundException();
+    }
 }}

@@ -28,10 +28,13 @@ export class UsersService {
   }
 
   async findbyId(id: any): Promise<Users> {
-    try {
-      return this.usersModel.findById(id).exec();
-    } catch (error) {
-      throw new NotFoundException(error.message);
+    
+       const result = await   this.usersModel.findById(id).exec();
+   
+    if (result) {
+      return result;
+    } else {
+      throw new NotFoundException();
     }
   }
 
@@ -45,18 +48,24 @@ export class UsersService {
   }
 
   async update(_id: string, updateOfficeInfo: UsersDTO): Promise<Users> {
-    try {
-      return this.usersModel.findByIdAndUpdate({ _id }, updateOfficeInfo).exec();
-    } catch (error) {
-      throw new NotFoundException(error.message);
+    
+      const result = await   this.usersModel.findByIdAndUpdate({ _id }, updateOfficeInfo).exec();
+    
+    if (result) {
+      return result;
+    } else {
+      throw new NotFoundException();
     }
   }
 
   async delete(_id: string): Promise<Users> {
-    try {
-      return this.usersModel.findByIdAndDelete({ _id }).exec();
-    } catch (error) {
-      throw new NotFoundException(error.message);
+    
+     const result = await   this.usersModel.findByIdAndDelete({ _id }).exec();
+     
+    if (result) {
+      return result;
+    } else {
+      throw new NotFoundException();
     }
   }
 
