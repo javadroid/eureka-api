@@ -13,12 +13,11 @@ export class StudentsController {
   constructor(private configService: ConfigService,private studentsService: StudentsService,private studentAuthService:AuthService) {}
 
 
-  // @UseGuards(LocalAuthGuard)
   @Post('login')
   async login(@Body() student: StudentsDTO) {
 
     return this.studentAuthService.login(student.matricNo, student.password);
-    // return req.user;
+
   }
   
   @UseGuards(JwtAuthGuard)
@@ -47,7 +46,7 @@ export class StudentsController {
 
   @Get()
   findAll() {
-    console.log(this.configService.get<string>('JWT_CONSTANT_STUDENTS'),)
+   
     return this.studentsService.findAll();
   }
 

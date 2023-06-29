@@ -18,8 +18,12 @@ export class StudentsService {
     const password = createStudents.password ?? 'fulafia';
     const hash = await bcrypt.hash(password, saltOrRounds);
       const createdstudentInfo = await new this.studentsModel({...createStudents,password:hash});
-      const result =await createdstudentInfo.save();
-      return result
+      const result =await createdstudentInfo.save() as any;
+      const studenti={...result._doc} 
+      delete studenti.password;
+      delete studenti.token;
+    
+      return studenti;
     } catch (error) {
       throw new NotAcceptableException(error.message);
     }
@@ -29,12 +33,16 @@ export class StudentsService {
     try {
 
       const result =await this.studentsModel.find().exec();
-        result.forEach((student) => {
-        delete student.password;
-        delete student.token;
+      const newResult = []
+      result.forEach((student:any) => {
+        const studenti={...student._doc
+        }
+        delete studenti.password;
+        delete studenti.token;
+        newResult.push(studenti)
       })
 
-      return result;
+      return newResult;
     } catch (error) {
       throw new NotFoundException(error.message);
     }
@@ -42,14 +50,15 @@ export class StudentsService {
 
   async findbyId(id: any): Promise<Students> {
     
-       const result = await   this.studentsModel.findById(id).exec();
+       const result = await   this.studentsModel.findById(id).exec() as any;
    
     if (result) {
       
-        delete result.password;
-        delete result.token;
+      const studenti={...result._doc} as any
+      delete studenti.password;
+      delete studenti.token;
     
-      return result;
+      return studenti;
     } else {
       throw new NotFoundException();
     }
@@ -58,14 +67,20 @@ export class StudentsService {
   async findbyAny(id: string, value: string): Promise<Students[]> {
 
     const result = await this.studentsModel.find({ [id]: value }).exec();
-    result.forEach((student) => {
-      delete student.password;
-      delete student.token;
+    const newResult = []
+    result.forEach((student:any) => {
+      const studenti={...student._doc
+      }
+      delete studenti.password;
+      delete studenti.token;
+      newResult.push(studenti)
     })
+
+    
     if (!result) {
       throw new NotFoundException(value+' not found in fleid ' +id);
     }
-    return result;
+    return newResult;
   }
 
   async getToken(id: string, tokenn:string): Promise<boolean> {
@@ -90,12 +105,14 @@ export class StudentsService {
 
   async update(_id: string, updateOfficeInfo: StudentsDTO): Promise<Students> {
     
-      const result = await   this.studentsModel.findByIdAndUpdate({ _id }, updateOfficeInfo).exec();
+      const result = await   this.studentsModel.findByIdAndUpdate({ _id }, updateOfficeInfo).exec()as any;
     
     if (result) {
-      delete result.password;
-      delete result.token;
-      return result;
+      const studenti={...result._doc} 
+      delete studenti.password;
+      delete studenti.token;
+    
+      return studenti;
     } else {
       throw new NotFoundException();
     }
@@ -103,10 +120,14 @@ export class StudentsService {
 
   async delete(_id: string): Promise<Students> {
     
-     const result = await   this.studentsModel.findByIdAndDelete({ _id }).exec();
+     const result = await   this.studentsModel.findByIdAndDelete({ _id }).exec()as any;
      
     if (result) {
-      return result;
+      const studenti={...result._doc} 
+      delete studenti.password;
+      delete studenti.token;
+    
+      return studenti;
     } else {
       throw new NotFoundException();
     }
