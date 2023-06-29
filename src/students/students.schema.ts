@@ -1,13 +1,13 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { HydratedDocument } from 'mongoose';
 import * as mongoose from 'mongoose';
-import { Subscription } from '../subscription/subscription.schema';
+import { Subscription } from '../lib/subscription/subscription.schema';
 export type StudentsDocument = HydratedDocument<Students>;
 
 @Schema({timestamps:true,autoIndex: true})
 export class Students {
   @Prop()
-  fname: string;
+  fullname: string;
 
   @Prop()
   lname: string;
@@ -17,9 +17,11 @@ export class Students {
 
   @Prop({unique: true, index: true})
   matricNo: string;
-  @Prop({unique: true, index: true})
+
+  
+  @Prop()
   email: string;
-  @Prop({unique: true, index: true})
+  @Prop()
   phoneNo: string;
 
 
@@ -33,10 +35,16 @@ export class Students {
   department: string;
 
   @Prop()
+  token: string;
+
+  @Prop()
   subscription: string;
 
   @Prop()
   type: string;
+
+  @Prop()
+  password: string;
 
   @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'Subscription'})
   history: Subscription[];

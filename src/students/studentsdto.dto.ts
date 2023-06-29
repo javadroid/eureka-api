@@ -11,5 +11,7 @@ export default class StudentsDTO{
   department: string;
   subscription: string;
   type: string;
+  token: string;
+  password:string;
   history: mongoose.Schema.Types.ObjectId[];
 }

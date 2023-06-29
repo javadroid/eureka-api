@@ -37,16 +37,15 @@ import { News, NewsSchema } from "./news/news.schema";
 import { StudentDepartment, StudentDepartmentSchema } from "./student-department/student-department.schema";
 import { StudentLevel, StudentLevelSchema } from "./student-level/student-level.schema";
 import { Courses, CoursesSchema } from "./courses/courses.schema";
-import { StudentsController } from './students/students.controller';
-import { StudentsService } from './students/students.service';
-import { Students, StudentsSchema } from "./students/students.schema";
+
 
 
 @Module({
-  controllers: [ FileuploadController,StudentDepartmentController, StudentFacultyController, StudentLevelController, NewsController, NewsCategoryController, SubscriptionController, CourseController, QuestionController, AnswersController, ResourceController, UsersController, StudentsController],
-  providers: [FileuploadService, StudentLevelService,StudentDepartmentService, StudentFacultyService, NewsService, NewsCategoryService, SubscriptionService, CourseService, QuestionService, AnswersService, ResourceService, UsersService, StudentsService],
+  controllers: [ FileuploadController,StudentDepartmentController, StudentFacultyController, StudentLevelController, NewsController, NewsCategoryController, SubscriptionController, CourseController, QuestionController, AnswersController, ResourceController, UsersController, ],
+  providers: [FileuploadService,StudentLevelService,StudentDepartmentService, StudentFacultyService, NewsService, NewsCategoryService, SubscriptionService, CourseService, QuestionService, AnswersService, ResourceService, UsersService, ],
   exports: [],
   imports: [
+    
     MongooseModule.forFeature([{ name: Answers.name, schema: AnswersSchema }]),
     MongooseModule.forFeature([{ name: Users.name, schema: UsersSchema }]),
     MongooseModule.forFeature([{ name: Courses.name, schema: CoursesSchema }]),
@@ -55,14 +54,14 @@ import { Students, StudentsSchema } from "./students/students.schema";
     MongooseModule.forFeature([{ name: Questions.name, schema: QuestionsSchema }]),
     MongooseModule.forFeature([{ name: Resources.name, schema: ResourcesSchema }]),
     MongooseModule.forFeature([{ name: StudentDepartment.name, schema: StudentDepartmentSchema }]),
-    MongooseModule.forFeature([{ name: Students.name, schema: StudentsSchema }]),
+    
     MongooseModule.forFeature([{ name: StudentFaculty.name, schema: StudentFacultySchema }]),
     MongooseModule.forFeature([{ name: StudentLevel.name, schema: StudentLevelSchema }]),
     MongooseModule.forFeature([{ name: Subscription.name, schema: SubscriptionSchema }]),
 
     MulterModule.register({dest:'/uploads'}),
-
  
+   
 
 ],
 })
