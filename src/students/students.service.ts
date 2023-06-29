@@ -71,7 +71,7 @@ export class StudentsService {
     result.forEach((student:any) => {
       const studenti={...student._doc
       }
-      delete studenti.password;
+      // delete studenti.password;
       delete studenti.token;
       newResult.push(studenti)
     })
