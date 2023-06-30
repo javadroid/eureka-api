@@ -50,6 +50,9 @@ export class Students {
   @Prop()
   profileImage: string;
 
+  @Prop()
+  username: string;
+
   @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'Subscription'})
   history: Subscription[];
 
