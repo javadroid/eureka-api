@@ -11,6 +11,8 @@ export class Students {
 
   @Prop()
   lname: string;
+  @Prop()
+  about: string;
 
   @Prop()
   mname: string;

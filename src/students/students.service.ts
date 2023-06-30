@@ -105,7 +105,7 @@ export class StudentsService {
 
   async update(_id: string, updateOfficeInfo: StudentsDTO): Promise<Students> {
     
-      const result = await   this.studentsModel.findByIdAndUpdate({ _id }, updateOfficeInfo).exec()as any;
+      const result = await   this.studentsModel.findByIdAndUpdate({ _id }, updateOfficeInfo ,{new:true}).exec()as any;
     
     if (result) {
       const studenti={...result._doc} 

@@ -1,12 +1,13 @@
 import * as mongoose from 'mongoose';
 export default class StudentsDTO{
-  fname: string;
+  fullname: string;
   lname: string;
   mname: string;
   matricNo: string;
   email: string;
   phoneNo: string;
   level: string;
+    about: string;
   faculty: string;
   department: string;
   subscription: string;
