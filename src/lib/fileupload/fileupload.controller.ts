@@ -84,7 +84,7 @@ export class FileuploadController {
     })
   )
   async uploadMultipleDev(@UploadedFiles() files,@Req() request: Request) {
-    console.log(files);
+    console.log("files",files);
     const names = [];
     files.forEach((file) => {
       const name = file.originalname.split('.')[0];
@@ -92,7 +92,7 @@ export class FileuploadController {
       const host = request.headers.host;
       const protocol = request.protocol;
       const url = `${protocol}://${host}`;
-      console.log("file", file,file.path.split('document/'));
+      // console.log("file", file,file.path.split('document/'));
       names.push(
         `${url}/api/document/` + file.path.split('\\')[1]
       );

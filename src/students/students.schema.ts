@@ -47,6 +47,8 @@ export class Students {
 
   @Prop()
   password: string;
+  @Prop()
+  profileImage: string;
 
   @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'Subscription'})
   history: Subscription[];

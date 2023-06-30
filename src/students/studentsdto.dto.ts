@@ -8,6 +8,8 @@ export default class StudentsDTO{
   phoneNo: string;
   level: string;
     about: string;
+
+    profileImage: string;
   faculty: string;
   department: string;
   subscription: string;
