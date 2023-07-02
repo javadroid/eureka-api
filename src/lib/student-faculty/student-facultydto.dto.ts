@@ -1,9 +1,9 @@
 export default class StudentFacultyDTO {
   department: string;
 
-  faculty: number;
+  faculty: string;
 
   level: string;
 
-  semester: number;
+  semester: string;
 }

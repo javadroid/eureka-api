@@ -9,13 +9,13 @@ export  class StudentFaculty {
   department: string;
 
   @Prop({unique: true, index: true})
-  faculty: number;
+  faculty: string;
 
   @Prop()
   level: string;
 
   @Prop()
-  semester: number;
+  semester: string;
 }
 
 export const StudentFacultySchema = SchemaFactory.createForClass(StudentFaculty);

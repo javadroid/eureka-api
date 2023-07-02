@@ -5,5 +5,5 @@ export default  class StudentDepartmentDTO {
 
   level: string;
 
-  semester: number;
+  semester: string;
 }

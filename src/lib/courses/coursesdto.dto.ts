@@ -1,7 +1,7 @@
 export default class CoursesDTO{
   courseCode: string;
   courseName: string;
-  year: number;
+  year: string;
   department: string;
   level: string;
   faculty: string;

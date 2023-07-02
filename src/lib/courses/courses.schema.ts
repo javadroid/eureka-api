@@ -10,7 +10,7 @@ export class Courses {
   @Prop()
   courseName: string;
   @Prop()
-  year: number;
+  year: string;
   @Prop()
   department: string;
   @Prop()

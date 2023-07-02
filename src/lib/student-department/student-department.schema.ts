@@ -15,7 +15,7 @@ export class StudentDepartment {
   level: string;
 
   @Prop()
-  semester: number;
+  semester: string;
 
 }
 
