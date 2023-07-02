@@ -8,7 +8,7 @@ export  class StudentFaculty {
   @Prop()
   department: string;
 
-  @Prop()
+  @Prop({unique: true, index: true})
   faculty: number;
 
   @Prop()
