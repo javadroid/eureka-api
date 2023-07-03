@@ -23,6 +23,7 @@ export class Students {
   
   @Prop()
   email: string;
+
   @Prop()
   phoneNo: string;
 
@@ -44,6 +45,10 @@ export class Students {
 
   @Prop()
   type: string;
+
+  @Prop()
+  role: string;
+
 
   @Prop()
   password: string;

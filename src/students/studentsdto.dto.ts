@@ -9,7 +9,7 @@ export default class StudentsDTO{
   level: string;
     about: string;
     username: string;
-
+    role: string;
     profileImage: string;
   faculty: string;
   department: string;
