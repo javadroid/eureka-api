@@ -13,12 +13,18 @@ async function bootstrap() {
     methods: ['GET', 'HEAD', 'PATCH', 'POST','DELETE'],
     allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
   });
+
   const globalPrefix = 'api';
   app.setGlobalPrefix(globalPrefix);
 
+  
   app.use(bodyParser.json({ limit: '50mb' }));
   app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
-  app.use(helmet());
+  helmet({
+    contentSecurityPolicy: false, // Disable Content-Security-Policy header
+    referrerPolicy: false, // Disable Referrer-Policy header
+    // Add more options as needed to disable or modify other headers
+  }),
   const port = process.env.PORT || 3333;
   await app.listen(port);
   Logger.log(
