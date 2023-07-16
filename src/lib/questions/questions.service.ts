@@ -48,7 +48,7 @@ export class QuestionService {
 
   async update(_id: string, updateNew: QuestionsDTO): Promise<Questions> {
     
-    const result = await this.questionsModel.findByIdAndUpdate({ _id }, updateNew).exec();
+    const result = await this.questionsModel.findByIdAndUpdate({ _id }, updateNew,{ new: true }).exec();
    
     if (result) {
       return result;

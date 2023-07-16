@@ -47,7 +47,7 @@ export class CourseService {
 
   async update(_id: string, updateNew: CoursesDTO): Promise<Courses> {
     
-     const result = await this.coursesModel.findByIdAndUpdate({ _id }, updateNew).exec();
+     const result = await this.coursesModel.findByIdAndUpdate({ _id }, updateNew,{ new: true }).exec();
      
       if (result) {
         return result;

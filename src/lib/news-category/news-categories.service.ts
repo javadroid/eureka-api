@@ -46,7 +46,7 @@ export class NewsCategoryService {
 
   async update(_id: string, updateNew: NewsCategoriesDTO): Promise<NewsCategories> {
    
-        const result = await   this.newsCategoriesModel.findByIdAndUpdate({ _id }, updateNew).exec();
+        const result = await   this.newsCategoriesModel.findByIdAndUpdate({ _id }, updateNew,{ new: true }).exec();
       if (result) {
         return result;
       } else {

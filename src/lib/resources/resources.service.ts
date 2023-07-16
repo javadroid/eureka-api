@@ -46,7 +46,7 @@ async findbyAny(id: string, value: string): Promise<Resources[]> {
 
 async update(_id: string, updateNew: ResourcesDTO): Promise<Resources> {
  
-     const result = await   this.usersModel.findByIdAndUpdate({ _id }, updateNew).exec();
+     const result = await   this.usersModel.findByIdAndUpdate({ _id }, updateNew,{ new: true }).exec();
  
     if (result) {
       return result;

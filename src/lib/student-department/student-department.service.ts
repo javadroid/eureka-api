@@ -44,7 +44,7 @@ export class StudentDepartmentService {
 
   async update(_id: string, updateNew: StudentDepartmentDTO): Promise<StudentDepartment> {
     try {
-      return this.studentDepartmentModel.findByIdAndUpdate({ _id }, updateNew).exec();
+      return this.studentDepartmentModel.findByIdAndUpdate({ _id }, updateNew,{ new: true }).exec();
     } catch (error) {
       throw new NotFoundException(error.message);
     }

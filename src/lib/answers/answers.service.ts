@@ -48,7 +48,7 @@ export class AnswersService {
 
     await this.answersModel.findById(_id).exec();
 
-    const result =await this.answersModel.findByIdAndUpdate({ _id }, updateNew).exec();
+    const result =await this.answersModel.findByIdAndUpdate({ _id }, updateNew,{ new: true }).exec();
     if (result) {
       return result
     } else {

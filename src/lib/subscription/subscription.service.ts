@@ -46,7 +46,7 @@ async findbyAny(id: string, value: string): Promise<Subscription[]> {
 
 async update(_id: string, updateNew: SubscriptionDTO): Promise<Subscription> {
   
-     const result = await   this.subscriptionModel.findByIdAndUpdate({ _id }, updateNew).exec();
+     const result = await   this.subscriptionModel.findByIdAndUpdate({ _id }, updateNew,{ new: true }).exec();
  
     if (result) {
       return result;

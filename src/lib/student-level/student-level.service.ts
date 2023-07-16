@@ -46,7 +46,7 @@ async findbyAny(id: string, value: string): Promise<StudentLevel[]> {
 
 async update(_id: string, updateNew: StudentLevelDTO): Promise<StudentLevel> {
   
-    const result = await  this.studentLevelModel.findByIdAndUpdate({ _id }, updateNew).exec();
+    const result = await  this.studentLevelModel.findByIdAndUpdate({ _id }, updateNew,{ new: true }).exec();
    
     if (result) {
       return result;

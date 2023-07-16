@@ -46,7 +46,7 @@ async findbyAny(id: string, value: string): Promise<StudentFaculty[]> {
 
 async update(_id: string, updateNew: StudentFacultyDTO): Promise<StudentFaculty> {
   
-   const result = await   this.studentFacultyModel.findByIdAndUpdate({ _id }, updateNew).exec();
+   const result = await   this.studentFacultyModel.findByIdAndUpdate({ _id }, updateNew,{ new: true }).exec();
    
     if (result) {
       return result;
