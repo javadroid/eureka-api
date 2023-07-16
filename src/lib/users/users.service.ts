@@ -49,7 +49,7 @@ export class UsersService {
 
   async update(_id: string, updateOfficeInfo: UsersDTO): Promise<Users> {
     
-      const result = await   this.usersModel.findByIdAndUpdate({ _id }, updateOfficeInfo).exec();
+      const result = await   this.usersModel.findByIdAndUpdate({ _id }, updateOfficeInfo,{ new: true }).exec();
     
     if (result) {
       return result;
