@@ -24,7 +24,7 @@ async function bootstrap() {
     contentSecurityPolicy: false, // Disable Content-Security-Policy header
     referrerPolicy: false, // Disable Referrer-Policy header
     // Add more options as needed to disable or modify other headers
-  }),
+  })
   const port = process.env.PORT || 3333;
   await app.listen(port);
   Logger.log(
